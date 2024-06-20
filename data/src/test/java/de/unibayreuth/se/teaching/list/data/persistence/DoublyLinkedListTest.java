@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
 /**
  * Unit tests for the doubly linked list.
  */
@@ -32,6 +34,13 @@ class DoublyLinkedListTest {
         Assertions.assertNull(list.getStart().getNext());
         Assertions.assertNull(list.getEnd().getPrev());
         Assertions.assertNull(list.getEnd().getNext());
+    }
+
+    @Test
+    void testInsertInEmptyList() {
+        Assertions.assertTrue(list.isEmpty());
+        list.insert(new DoublyLinkedList.Element(0.7));
+        assertArrayEquals(new double[]{0.7}, list.asArray());
     }
 
     @Test
@@ -65,6 +74,13 @@ class DoublyLinkedListTest {
         list.insert(new DoublyLinkedList.Element(0.6));
         // then: the new element is placed in the right position
         Assertions.assertArrayEquals(new double[]{0.2, 0.4, 0.5, 0.6, 0.8}, list.asArray());
+    }
+
+    @Test
+    void testInsertDouble() {
+        Assertions.assertTrue(list.isEmpty());
+        list.insert(0.7);
+        assertArrayEquals(new double[]{0.7}, list.asArray());
     }
 
     @Test
